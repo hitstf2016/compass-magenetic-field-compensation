@@ -53,10 +53,13 @@ A0=inv(C0)*B0;
 
 %calculate the distortion matrix 
 
-L1=[0.827  0;
-    0      1];
-L2=[0.9869    -0.1611;
-    -0.1611    0.9869];
+a1=0.5*asin(-0.5*A0(3)/(A0(1)*A0(2))^0.5);
+Ky=(A0(1)/A0(2))^0.5;
+
+L1=[1, 0
+    0,Ky];
+L2=[cos(a1),sin(a1)
+    sin(a1),cos(a1)];
 L3=inv(L1*L2);
 N1=inv(L1*L2)*[x'; y'];
 x2=N1(1,:);
